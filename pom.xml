@@ -82,7 +82,7 @@
         <jaxws-rt.version>4.0.5</jaxws-rt.version>
         <commons.net.version>3.13.0</commons.net.version>
         <commons.configuration>2.15.1</commons.configuration>
-        <swagger.annotation.version>2.2.52</swagger.annotation.version>
+        <swagger.annotation.version>2.2.54</swagger.annotation.version>
         <bouncycastle.version>1.84</bouncycastle.version>
         <!-- Track Spring Boot's hibernate-core; a plugin/runtime mismatch breaks enhancement. -->
         <hibernate-enhance-maven-plugin.version>${hibernate.version}</hibernate-enhance-maven-plugin.version>
