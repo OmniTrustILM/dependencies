@@ -23,7 +23,7 @@
 
     <licenses>
         <license>
-            <name>MIT License</name>
+            <name>Apache License, Version 2.0</name>
             <url>https://github.com/OmniTrustILM/dependencies/blob/main/LICENSE.md</url>
         </license>
     </licenses>
