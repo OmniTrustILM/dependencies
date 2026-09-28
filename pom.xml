@@ -73,7 +73,7 @@
              (netty-handler), and the 4.1.138.Final codec fixes, CVE-2026-89044 (HTTP/1.1 request
              smuggling) among them. 4.1.138.Final turns HTTP/2 header value validation on by default.
              The netty-bom import below keeps Renovate tracking it. -->
-        <netty.version>4.1.138.Final</netty.version>
+        <netty.version>4.2.18.Final</netty.version>
         <!-- tomcat: Boot manages 10.1.55. CVE-2026-65182 / CVE-2026-65905 / CVE-2026-68525
              (auth and constraint bypasses, fixed in 10.1.59) and the 10.1.60 fixes, CVE-2026-76183
              (WebSocket constraint bypass) among them. The tomcat-embed-core entry below keeps
