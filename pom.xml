@@ -62,7 +62,7 @@
              are already validated on 2.22.x, so we stay rather than re-test a downgrade.
              Must remain >= 2.22.1 (GHSA-r7wm-3cxj-wff9). Drop once Spring Boot manages
              Jackson >= 2.22.1. The jackson-bom import below keeps Renovate tracking it. -->
-        <jackson-bom.version>2.22.1</jackson-bom.version>
+        <jackson-bom.version>2.22.3</jackson-bom.version>
         <!-- Override Spring Boot's managed postgresql 42.7.11 (CVE-2026-54291); no Spring Boot
              release incl. 4.x ships 42.7.12 yet. Drop once the parent manages >= 42.7.12. -->
         <postgresql.version>42.7.12</postgresql.version>
