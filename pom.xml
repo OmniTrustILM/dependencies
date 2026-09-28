@@ -76,8 +76,8 @@
         <netty.version>4.1.138.Final</netty.version>
         <!-- tomcat: Boot manages 10.1.55. CVE-2026-65182 / CVE-2026-65905 / CVE-2026-68525
              (auth and constraint bypasses, fixed in 10.1.59) and the 10.1.60 fixes, CVE-2026-76183
-             (WebSocket constraint bypass) among them. Renovate does not track it: nothing in this
-             POM references the property. -->
+             (WebSocket constraint bypass) among them. The tomcat-embed-core entry below keeps
+             Renovate tracking it. -->
         <tomcat.version>10.1.60</tomcat.version>
         <wiremock.version>3.13.2</wiremock.version>
         <!-- Spring Boot's property is log4j2.version, not log4j.version; the latter matched
@@ -137,6 +137,15 @@
                 <version>${netty.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- Explicit entry so Renovate tracks tomcat.version; Tomcat publishes no BOM. It
+                 shadows Spring Boot's identical entry, and the property still drives the other
+                 Tomcat artifacts Spring Boot manages. -->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
             </dependency>
 
             <!-- Explicit import so Renovate tracks log4j2.version; overrides
