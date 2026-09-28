@@ -62,16 +62,23 @@
              are already validated on 2.22.x, so we stay rather than re-test a downgrade.
              Must remain >= 2.22.1 (GHSA-r7wm-3cxj-wff9). Drop once Spring Boot manages
              Jackson >= 2.22.1. The jackson-bom import below keeps Renovate tracking it. -->
-        <jackson-bom.version>2.22.1</jackson-bom.version>
-        <!-- Override Spring Boot's managed postgresql 42.7.11 (CVE-2026-54291); no Spring Boot
-             release incl. 4.x ships 42.7.12 yet. Drop once the parent manages >= 42.7.12. -->
-        <postgresql.version>42.7.12</postgresql.version>
-        <!-- Override Spring Boot's managed netty 4.1.135.Final: CVE-2026-59901
-             (netty-codec Bzip2 infinite loop), CVE-2026-55831 / CVE-2026-55833 /
-             CVE-2026-56745 (netty-codec-http). No Spring Boot release ships
-             >= 4.1.136.Final yet. Drop once the parent manages >= 4.1.136.Final.
+        <jackson-bom.version>2.22.3</jackson-bom.version>
+        <!-- Boot 3.5.16 is the last 3.5 OSS release, so the parent will never pick up the fixes
+             pinned below on this line. Each pin stays until the move to Boot 4 and is re-checked
+             there against the versions that parent manages. -->
+        <!-- postgresql: Boot manages 42.7.11 (CVE-2026-54291). -->
+        <postgresql.version>42.7.13</postgresql.version>
+        <!-- netty: Boot manages 4.1.135.Final. CVE-2026-59901 (netty-codec Bzip2 infinite loop),
+             CVE-2026-55831 / CVE-2026-55833 / CVE-2026-56745 (netty-codec-http), CVE-2026-75595
+             (netty-handler), and the 4.1.138.Final codec fixes, CVE-2026-89044 (HTTP/1.1 request
+             smuggling) among them. 4.1.138.Final turns HTTP/2 header value validation on by default.
              The netty-bom import below keeps Renovate tracking it. -->
-        <netty.version>4.1.136.Final</netty.version>
+        <netty.version>4.1.138.Final</netty.version>
+        <!-- tomcat: Boot manages 10.1.55. CVE-2026-65182 / CVE-2026-65905 / CVE-2026-68525
+             (auth and constraint bypasses, fixed in 10.1.59) and the 10.1.60 fixes, CVE-2026-76183
+             (WebSocket constraint bypass) among them. The tomcat-embed-core entry below keeps
+             Renovate tracking it. -->
+        <tomcat.version>10.1.60</tomcat.version>
         <wiremock.version>3.13.2</wiremock.version>
         <!-- Spring Boot's property is log4j2.version, not log4j.version; the latter matched
              nothing and left consumers on Spring Boot's managed 2.24.3. Drop once Spring Boot
@@ -83,7 +90,10 @@
         <commons.net.version>3.13.0</commons.net.version>
         <commons.configuration>2.15.1</commons.configuration>
         <swagger.annotation.version>2.2.52</swagger.annotation.version>
-        <bouncycastle.version>1.84</bouncycastle.version>
+        <!-- 1.85 fixes CVE-2026-8763 and CVE-2026-13506. Hold here: 1.86 removes
+             org.bouncycastle.pqc.crypto.crystals.dilithium, which interfaces still imports, and this
+             build does not compile interfaces, so a green bump here proves nothing. -->
+        <bouncycastle.version>1.85</bouncycastle.version>
         <!-- Track Spring Boot's hibernate-core; a plugin/runtime mismatch breaks enhancement. -->
         <hibernate-enhance-maven-plugin.version>${hibernate.version}</hibernate-enhance-maven-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
@@ -127,6 +137,15 @@
                 <version>${netty.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- Explicit entry so Renovate tracks tomcat.version; Tomcat publishes no BOM. It
+                 shadows Spring Boot's identical entry, and the property still drives the other
+                 Tomcat artifacts Spring Boot manages. -->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
             </dependency>
 
             <!-- Explicit import so Renovate tracks log4j2.version; overrides
