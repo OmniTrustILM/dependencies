@@ -67,6 +67,9 @@
         <!-- Boot 4.1.1 manages 11.0.24. CVE-2026-65182 / -65905 / -68525 are fixed in 11.0.25, CVE-2026-76183 in
              11.0.26. Drop once Boot manages >= 11.0.26. The tomcat-embed-core entry below keeps Renovate tracking it. -->
         <tomcat.version>11.0.26</tomcat.version>
+        <!-- Boot 4.1.1 manages 7.4.5. HHH-20744 (FOR UPDATE silently dropped on entities with an inverse OneToOne) is
+             fixed in 7.4.8. Drop once Boot manages >= 7.4.8. -->
+        <hibernate.version>7.4.12.Final</hibernate.version>
         <wiremock.version>3.13.2</wiremock.version>
         <!-- Boot's property is log4j2.version; drop this override once Boot manages >= 2.26.1. -->
         <log4j2.version>2.26.1</log4j2.version>
