@@ -89,7 +89,7 @@
         <jaxws-rt.version>4.0.5</jaxws-rt.version>
         <commons.net.version>3.13.0</commons.net.version>
         <commons.configuration>2.15.1</commons.configuration>
-        <swagger.annotation.version>2.2.52</swagger.annotation.version>
+        <swagger.annotation.version>2.2.55</swagger.annotation.version>
         <!-- 1.85 fixes CVE-2026-8763 and CVE-2026-13506. Hold here: 1.86 removes
              org.bouncycastle.pqc.crypto.crystals.dilithium, which interfaces still imports, and this
              build does not compile interfaces, so a green bump here proves nothing. -->
