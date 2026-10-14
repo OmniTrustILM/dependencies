@@ -54,6 +54,7 @@ The only Java in this repository is the `formatter-selftest` fixture set; the ag
 - **JaCoCo** runs coverage during the `package` phase
 - **maven-jar-plugin** disables Maven descriptor in archives (`addMavenDescriptor: false`)
 - **maven-compiler-plugin** enables `parameters=true` for reflection support
+- **git-commit-id** and **spring-boot-maven-plugin** (`build-info`) take the build time from `maven.build.timestamp`, because Maven 3.10+ otherwise hands them the fixed 1980 `project.build.outputTimestamp`
 
 ## Formatting and lint gates (inherited by child projects)
 

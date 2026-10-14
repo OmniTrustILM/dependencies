@@ -331,6 +331,23 @@
                     <artifactId>git-build-hook-maven-plugin</artifactId>
                     <version>${git-build-hook-maven-plugin.version}</version>
                 </plugin>
+                <!-- Maven 3.10 sets project.build.outputTimestamp to a fixed 1980 date for reproducible
+                     builds, and both plugins below report it as the build time when it is set. Report
+                     when the build ran instead; jar entry timestamps keep the fixed date. -->
+                <plugin>
+                    <groupId>io.github.git-commit-id</groupId>
+                    <artifactId>git-commit-id-maven-plugin</artifactId>
+                    <configuration>
+                        <projectBuildOutputTimestamp>${maven.build.timestamp}</projectBuildOutputTimestamp>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <time>${maven.build.timestamp}</time>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
