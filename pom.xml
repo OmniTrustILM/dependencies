@@ -118,6 +118,15 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- Imported explicitly so Renovate tracks jackson-bom.version. -->
+            <dependency>
+                <groupId>tools.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- Explicit entry so Renovate tracks tomcat.version; Tomcat publishes no BOM. It
                  shadows Spring Boot's identical entry, and the property still drives the other
                  Tomcat artifacts Spring Boot manages. -->
@@ -125,6 +134,14 @@
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
                 <version>${tomcat.version}</version>
+            </dependency>
+
+            <!-- Explicit entry so Renovate tracks hibernate.version. It shadows Spring Boot's identical entry, and the
+                 property still drives the other Hibernate artifacts Spring Boot manages. -->
+            <dependency>
+                <groupId>org.hibernate.orm</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
             </dependency>
 
             <!-- Explicit import so Renovate tracks log4j2.version; overrides

@@ -46,7 +46,7 @@ Hibernate 7 relocated the bytecode enhancement plugin. 2.20.0 manages the new co
 Confirm the goal still runs — it appears in the executed-goal list of any `mvn compile`:
 
 ```
-[INFO] --- hibernate:7.4.5.Final:enhance (default) @ your-module ---
+[INFO] --- hibernate:<version>:enhance (default) @ your-module ---
 ```
 
 Drop `failOnError` and `enableLazyInitialization` if your POM sets them: the first is gone in 7.x, the second is deprecated and already defaults to true.
