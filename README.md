@@ -22,11 +22,11 @@ For more information, see [pom.xml](./pom.xml).
 
 ## Upgrading to 2.20.0
 
-2.20.0 moves the platform to Spring Boot 4.1. It requires the following of every consumer, and one of them fails silently.
+2.20.0 moves the platform to Spring Boot 4.1. Start with the [Spring Boot 4.0 Migration Guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide) and the [4.1 release notes](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.1-Release-Notes). The steps below are what this parent changes and the traps the platform's own migrations hit. **The ones that fail silently say so in bold.**
 
 ### JDK 21 is required
 
-2.20.0 sets `maven.compiler.release=21`, so it emits Java 21 bytecode and needs a JDK 21 toolchain to build. Earlier releases inherited the Boot parent's Java 17 release level regardless of the `source` and `target` set here.
+2.20.0 sets `java.version=21`, so it emits Java 21 bytecode and needs a JDK 21 toolchain to build. A consumer that sets its own `java.version` compiles to that level instead. Earlier releases left a consumer without its own `java.version` on the Boot parent's Java 17.
 
 ### Move the Hibernate enhance plugin, in the same commit
 
@@ -50,6 +50,18 @@ Confirm the goal still runs — it appears in the executed-goal list of any `mvn
 ```
 
 Drop `failOnError` and `enableLazyInitialization` if your POM sets them: the first is gone in 7.x, the second is deprecated and already defaults to true.
+
+### Replace `hibernate-jpamodelgen` with `hibernate-processor`
+
+Spring Boot 4.1 manages the JPA metamodel generator only under its new coordinate, `org.hibernate.orm:hibernate-processor`. A versionless `hibernate-jpamodelgen` stops resolving and fails the build.
+
+### Check your REST JSON under Jackson 3
+
+Spring Boot 4 reads and writes REST bodies with Jackson 3. **Jackson 2's databind annotations, such as `@JsonSerialize`, and Jackson 2 `ObjectMapper` customizations stop applying, with no error.** Annotations from `jackson-annotations`, such as `@JsonProperty`, keep working. `interfaces` 2.20.0 handles its own DTOs. Pin your REST JSON in golden tests before the bump and check them after.
+
+### Use the Flyway starter
+
+**With only `flyway-core` on the classpath, Spring Boot 4 stops running the migrations at startup.** Depend on `org.springframework.boot:spring-boot-starter-flyway` instead.
 
 ## Java formatting
 
