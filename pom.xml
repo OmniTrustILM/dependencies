@@ -62,7 +62,7 @@
         <jackson-2-bom.version>2.22.3</jackson-2-bom.version>
         <!-- Jackson 3. Boot 4.1.1 manages 3.1.5. jackson-core CVE-2026-89425 / -89407 and jackson-databind CVE-2026-68497 /
              -91776 / -91777 / -83557 / -19032 are fixed in 3.1.7. Drop once Boot manages >= 3.1.7. -->
-        <jackson-bom.version>3.1.7</jackson-bom.version>
+        <jackson-bom.version>3.2.3</jackson-bom.version>
         <!-- Not managed by the Boot 4 BOM. -->
         <spring-retry.version>2.0.13</spring-retry.version>
         <!-- Boot 4.1.1 manages 11.0.24. CVE-2026-65182 / -65905 / -68525 are fixed in 11.0.25, CVE-2026-76183 in
