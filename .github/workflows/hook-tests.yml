@@ -32,7 +32,7 @@ jobs:
       - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: '25'
           cache: maven
 
       # A CRLF shebang makes the hook unrunnable. .gitattributes pins these to
@@ -90,7 +90,7 @@ jobs:
       - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: '25'
           cache: maven
 
       # git-build-hook installs into the git dir of the CURRENT worktree, which for a linked
