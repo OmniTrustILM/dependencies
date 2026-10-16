@@ -54,7 +54,7 @@
         <!-- Fixtures are not a product. maven.install.skip keeps them out of ~/.m2;
              maven.deploy.skip covers the github profile, which deploys via maven-deploy-plugin.
              The central profile does NOT honour either flag — central-publishing-maven-plugin
-             never reads them (checked against the 0.11.0 bytecode) — so the parent's central
+             never reads them (checked against the 0.12.0 bytecode) — so the parent's central
              profile excludes this artifactId explicitly. Both halves are needed. -->
         <maven.install.skip>true</maven.install.skip>
         <maven.deploy.skip>true</maven.deploy.skip>

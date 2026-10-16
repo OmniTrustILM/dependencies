@@ -85,7 +85,7 @@
         <!-- Must track hibernate-core; a plugin/runtime mismatch breaks enhancement. -->
         <hibernate-maven-plugin.version>${hibernate.version}</hibernate-maven-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
-        <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.12.0</central-publishing-maven-plugin.version>
         <!-- Spotless: both the plugin and the bundled Eclipse JDT formatter are pinned, because
              .editorconfig is hand-tuned against this exact engine. Bumping either requires re-running the IntelliJ
              round-trip parity check — procedure documented in build-tools/src/main/resources/otilm/eclipse-formatter.xml.  -->
