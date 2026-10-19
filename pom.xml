@@ -639,7 +639,9 @@
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>
-                            <deploymentName>${project.artifactId}-${project.version}</deploymentName>
+                            <!-- The bundle is uploaded from the reactor's last module, so
+                                 project.artifactId would name the deployment after that module. -->
+                            <deploymentName>${session.topLevelProject.artifactId}-${project.version}</deploymentName>
                             <excludeArtifacts>
                                 <excludeArtifact>formatter-selftest</excludeArtifact>
                             </excludeArtifacts>
